@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { InfoEquipo } from '../interfaces/info-equipo.interface';
 import { InfoPagina } from '../interfaces/info-pagina.interface';
 
 @Injectable({
@@ -7,21 +8,34 @@ import { InfoPagina } from '../interfaces/info-pagina.interface';
 })
 export class InfoPaginaService {
 
-  info:InfoPagina = {};
-  cargada:boolean = false;
+  info   : InfoPagina = {};
+  cargada: boolean = false;
+  equipo : any[]=[];
 
-  constructor(
-    private http:HttpClient
-  ) {
-
-    console.log('Servicio infoPágina cargada');
+  constructor( private http: HttpClient  ) { 
+    this.cargarInfo();
+    this.cargarEquipo();
     
+  }
+
+  private cargarInfo() {
+
     // Leer archivo JSON
     this.http.get('assets/data/data/data-pagina.json')
-      .subscribe( (resp:InfoPagina) => {
+      .subscribe((resp: InfoPagina) => {
         this.cargada = true;
         this.info = resp;
-        console.log( this.info );        
+        console.log(this.info);
       });
-   }
+
+  }
+
+  private cargarEquipo(){
+     // Leer archivo JSON
+     this.http.get('https://angular-html-5c002-default-rtdb.europe-west1.firebasedatabase.app/equipo.json')
+     .subscribe((resp: any) => {
+       this.equipo = resp;
+       console.log(this.equipo);
+     });
+  }
 }
