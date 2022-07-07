@@ -32,4 +32,4 @@ import { SearchComponent } from './pages/search/search.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

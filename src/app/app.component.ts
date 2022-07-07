@@ -9,14 +9,12 @@ import { ProductosService } from './services/productos.service';
 })
 export class AppComponent {
 
+  title:string = "portafolio";
+
   
   constructor(
-    public infoPaginaService:InfoPaginaService,
-    public productosService : ProductosService
-  ) {
-
-    // Leer archivo JSON
-    
-  }
+    // public infoPaginaService: InfoPaginaService,
+    // public productosService : ProductosService
+  ) { }
 
 }
